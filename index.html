@@ -192,6 +192,35 @@
             z-index: 2;
             transform: translate(-50%, -50%);
         }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 8vw;
+                /* استخدام وحدة نسبية لضمان بقائها في سطر واحد */
+                white-space: nowrap;
+                /* منع نزول النص لسطر ثاني */
+                padding: 0 5px;
+                margin-bottom: 1rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .sub-tagline {
+                font-size: 0.85rem;
+                padding: 0 1rem;
+            }
+
+            .top-nav {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.8rem;
+                position: absolute;
+                top: 20px;
+            }
+        }
     </style>
 </head>
 
