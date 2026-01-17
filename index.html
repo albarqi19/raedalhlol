@@ -221,6 +221,183 @@
                 top: 20px;
             }
         }
+
+        /* Services Drawer Styles */
+        .services-drawer {
+            position: fixed;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+            /* Desktop Default: Centered Modal */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 80%;
+            max-width: 900px;
+            height: auto;
+            max-height: 85vh;
+            border-radius: 20px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .services-drawer.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        @media (max-width: 768px) {
+            .services-drawer {
+                top: auto;
+                left: 0;
+                bottom: -100%;
+                /* Start hidden below screen */
+                transform: none;
+                /* Reset desktop transform */
+                width: 100%;
+                height: 75vh;
+                /* تقليل الارتفاع قليلاً */
+                border-radius: 20px 20px 0 0;
+                border-bottom: none;
+                padding: 1.5rem;
+                /* تقليل الحواف الداخلية */
+            }
+
+            .services-drawer.open {
+                bottom: 0;
+                transform: none;
+                /* Reset desktop transform */
+            }
+
+            .drawer-header {
+                margin-bottom: 1rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .drawer-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                /* تقليل المسافة بين الكروت */
+            }
+
+            .service-card {
+                padding: 1rem;
+                /* كروت مدمجة اكثر */
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                text-align: right;
+            }
+
+            .service-icon {
+                margin-bottom: 0;
+                font-size: 1.8rem;
+            }
+
+            .service-card div {
+                /* حاوية للنص */
+            }
+
+            .service-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .service-card p {
+                font-size: 0.8rem;
+                line-height: 1.3;
+                margin-bottom: 0;
+            }
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .drawer-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .close-drawer {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s;
+            padding: 10px;
+        }
+
+        .close-drawer:hover {
+            color: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            overflow-y: auto;
+            align-content: start;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #eee;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .services-drawer {
+                height: 85vh;
+                /* أطول قليلاً على الجوال */
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -243,7 +420,7 @@
         <div class="tagline-container">
             <p class="tagline">نبتكر حلولاً رقمية ذكية تناسب تطلعاتكم</p>
             <p class="sub-tagline">نحول الأفكار إلى واقع ملموس بأحدث التقنيات وأفضل الممارسات</p>
-            <a href="#" class="cta-button">اكتشف المزيد</a>
+            <a href="javascript:void(0)" class="cta-button" onclick="toggleDrawer()">اكتشف المزيد</a>
         </div>
     </main>
 
@@ -255,7 +432,51 @@
         <span>من نحن</span>
     </footer>
 
+    <!-- Services Drawer -->
+    <div id="services-drawer" class="services-drawer">
+        <div class="drawer-header">
+            <h2>خدماتنا المميزة</h2>
+            <span class="close-drawer" onclick="toggleDrawer()">✕</span>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>بناء أنظمة تقنية</h3>
+                <p>نطور أنظمة برمجية متكاملة وقابلة للتوسع تدعم نمو أعمالك بكفاءة عالية وأمان.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>تطوير واجهات</h3>
+                <p>نصمم واجهات مستخدم مذهلة وسهلة الاستخدام تضمن تجربة فريدة لعملائك على جميع الأجهزة.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>تطبيقات الجوال</h3>
+                <p>نحول فكرتك إلى تطبيق احترافي يعمل بسلاسة على أنظمة iOS و Android بأحدث التقنيات.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>أتمتة المهام</h3>
+                <p>نساعدك في توفير الوقت والجهد من خلال أتمتة العمليات الروتينية باستخدام حلول ذكية.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('services-drawer');
+            drawer.classList.toggle('open');
+        }
+
+        // إغلاق الدرج عند الضغط خارجه (اختياري)
+        window.onclick = function (event) {
+            const drawer = document.getElementById('services-drawer');
+            const btn = document.querySelector('.cta-button');
+            if (event.target !== drawer && !drawer.contains(event.target) && event.target !== btn) {
+                drawer.classList.remove('open');
+            }
+        }
+
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         const glow = document.getElementById('mouse-glow');
