@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رائد الحلول الرقمية - رؤية سينمائية</title>
+    <!-- استيراد خط IBM Plex Sans Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-glow: rgba(255, 255, 255, 0.15);
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --accent-color: #ffffff;
+            /* تغيير اللون الأساسي إلى الأبيض */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* حاوية الخلفية والجزيئات */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: radial-gradient(circle at center, #0f0f0f 0%, #000 100%);
+        }
+
+        canvas {
+            display: block;
+        }
+
+        /* الروابط العلوية */
+        .top-nav {
+            position: absolute;
+            top: 40px;
+            z-index: 20;
+            display: flex;
+            gap: 30px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+        }
+
+        .top-nav span {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .top-nav span:hover {
+            color: #ffffff;
+        }
+
+        /* المحتوى الرئيسي */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            pointer-events: auto;
+            cursor: pointer;
+            background: linear-gradient(to bottom, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* تأثير الحركة عند الضغط فقط */
+        .hero-title.clicked {
+            animation: bounce 0.4s ease;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.97);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .tagline-container {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s forwards 0.5s;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .sub-tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.9rem 2.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+            pointer-events: auto;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+        }
+
+        /* الروابط السفلية */
+        .bottom-nav {
+            position: absolute;
+            bottom: 40px;
+            z-index: 20;
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .bottom-nav span {
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* تأثير الإضاءة الأبيض الذي يتبع الماوس في الخلفية */
+        #mouse-glow {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-nav">
+        <span>الرئيسية</span>
+        <span>عن الشركة</span>
+        <span>اتصل بنا</span>
+    </nav>
+
+    <div id="mouse-glow"></div>
+
+    <div id="canvas-container">
+        <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <main class="content">
+        <h1 class="hero-title" id="mainTitle">رائد الحلول الرقمية</h1>
+        <div class="tagline-container">
+            <p class="tagline">نبتكر حلولاً رقمية ذكية تناسب تطلعاتكم</p>
+            <p class="sub-tagline">نحول الأفكار إلى واقع ملموس بأحدث التقنيات وأفضل الممارسات</p>
+            <a href="#" class="cta-button">اكتشف المزيد</a>
+        </div>
+    </main>
+
+    <footer class="bottom-nav">
+        <span>خدماتنا</span>
+        <span>•</span>
+        <span>أعمالنا</span>
+        <span>•</span>
+        <span>من نحن</span>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        const glow = document.getElementById('mouse-glow');
+        const mainTitle = document.getElementById('mainTitle');
+
+        let particlesArray = [];
+        const numberOfParticles = 90; // تقليل العدد قليلاً لزيادة الوضوح والهدوء
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', setCanvasSize);
+        setCanvasSize();
+
+        let mouse = {
+            x: null,
+            y: null,
+            radius: 150
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+            glow.style.left = `${e.clientX}px`;
+            glow.style.top = `${e.clientY}px`;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height; // Initialize randomly on screen
+                this.size = Math.random() * 1.2 + 0.3;
+                this.speedY = Math.random() * 0.6 + 0.3;
+                this.opacity = Math.random() * 0.3 + 0.1;
+                this.fadeSpeed = 0.0005 + Math.random() * 0.0015;
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 1.2 + 0.3;
+                this.speedY = Math.random() * 0.6 + 0.3;
+                this.opacity = Math.random() * 0.3 + 0.1;
+                this.fadeSpeed = 0.0005 + Math.random() * 0.0015;
+            }
+
+            update() {
+                this.y -= this.speedY;
+
+                if (this.y < canvas.height * 0.2) {
+                    this.opacity -= this.fadeSpeed;
+                }
+
+                if (this.y < -20 || this.opacity <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.shadowBlur = 4;
+                ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+
+                    if (distance < (canvas.width / 7) * (canvas.height / 7) && distance < 20000) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.1})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+
+                // Connect to mouse
+                if (mouse.x != null) {
+                    let dx = particlesArray[a].x - mouse.x;
+                    let dy = particlesArray[a].y - mouse.y;
+                    let distance = dx * dx + dy * dy;
+                    if (distance < 25000) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.2})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            connect();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = `${e.clientX}px`;
+            glow.style.top = `${e.clientY}px`;
+        });
+
+        mainTitle.addEventListener('mousedown', () => {
+            mainTitle.classList.add('clicked');
+            setTimeout(() => {
+                mainTitle.classList.remove('clicked');
+            }, 400);
+        });
+
+        window.onload = () => {
+            initParticles();
+            animate();
+        };
+    </script>
+</body>
+
+</html>
