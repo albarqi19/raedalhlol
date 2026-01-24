@@ -7,7 +7,8 @@
     <title>رائد الحلول الرقمية - نصنع حلولاً</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="رائد الحلول الرقمية - شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام. نحول أفكاركم إلى حلول رقمية متكاملة.">
+    <meta name="description"
+        content="رائد الحلول الرقمية - شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام. نحول أفكاركم إلى حلول رقمية متكاملة.">
     <meta name="keywords" content="حلول رقمية، تطوير برمجيات، تصميم مواقع، تطبيقات جوال، أتمتة">
     <meta name="author" content="رائد الحلول الرقمية">
     <meta name="robots" content="index, follow">
@@ -17,32 +18,25 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.raed-it.com/">
     <meta property="og:title" content="رائد الحلول الرقمية - نصنع حلولاً رقمية ذكية">
-    <meta property="og:description" content="شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام.">
+    <meta property="og:description"
+        content="شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام.">
     <meta property="og:image" content="https://www.raed-it.com/og-image.jpg">
     <meta property="og:locale" content="ar_SA">
     <meta property="og:site_name" content="رائد الحلول الرقمية">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="رائد الحلول الرقمية - نصنع حلولاً رقمية ذكية">
-    <meta name="twitter:description" content="شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام.">
-    <meta name="twitter:image" content="https://www.raed-it.com/og-image.jpg">
-
     <!-- استيراد خط IBM Plex Sans Arabic -->
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
     <style>
         :root {
             --primary-glow: rgba(255, 255, 255, 0.15);
             --bg-color: #050505;
             --text-color: #ffffff;
             --accent-color: #ffffff;
-            /* تغيير اللون الأساسي إلى الأبيض */
         }
 
         * {
@@ -63,7 +57,7 @@
             align-items: center;
         }
 
-        /* حاوية الخلفية والجزيئات */
+        /* Canvas Background */
         #canvas-container {
             position: absolute;
             top: 0;
@@ -78,7 +72,7 @@
             display: block;
         }
 
-        /* الروابط العلوية */
+        /* Navigation */
         .top-nav {
             position: absolute;
             top: 40px;
@@ -102,7 +96,7 @@
             color: #ffffff;
         }
 
-        /* المحتوى الرئيسي */
+        /* Content */
         .content {
             position: relative;
             z-index: 10;
@@ -121,11 +115,11 @@
             cursor: pointer;
             background: linear-gradient(to bottom, #ffffff, #888888);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
         }
 
-        /* تأثير الحركة عند الضغط فقط */
         .hero-title.clicked {
             animation: bounce 0.4s ease;
         }
@@ -180,6 +174,7 @@
             transition: all 0.4s ease;
             pointer-events: auto;
             letter-spacing: 1px;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -188,7 +183,6 @@
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
         }
 
-        /* الروابط السفلية */
         .bottom-nav {
             position: absolute;
             bottom: 40px;
@@ -211,8 +205,14 @@
             color: #ffffff;
         }
 
-        .bottom-nav span {
-            cursor: default;
+        .footer-cr {
+            position: absolute;
+            bottom: 15px;
+            z-index: 20;
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 0.5px;
         }
 
         @keyframes fadeInUp {
@@ -222,7 +222,6 @@
             }
         }
 
-        /* تأثير الإضاءة الأبيض الذي يتبع الماوس في الخلفية */
         #mouse-glow {
             position: fixed;
             width: 700px;
@@ -234,65 +233,24 @@
             transform: translate(-50%, -50%);
         }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 8vw;
-                /* استخدام وحدة نسبية لضمان بقائها في سطر واحد */
-                white-space: nowrap;
-                /* منع نزول النص لسطر ثاني */
-                padding: 0 5px;
-                margin-bottom: 1rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            .sub-tagline {
-                font-size: 0.85rem;
-                padding: 0 1rem;
-            }
-
-            .top-nav {
-                width: 100%;
-                justify-content: center;
-                font-size: 0.8rem;
-                position: absolute;
-                top: 20px;
-            }
-        }
-
-        /* ================= Services Drawer & Cards ================= */
-        .services-drawer {
+        /* ================= Drawers Base ================= */
+        .drawer {
             position: fixed;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.98);
+            background: rgba(15, 15, 15, 0.85);
             backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             flex-direction: column;
-            padding: 2.5rem;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-            /* Desktop Mode: Centered Modal */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            width: 85%;
-            max-width: 1000px;
-            height: auto;
-            max-height: 85vh;
-            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             opacity: 0;
             pointer-events: none;
         }
 
-        .services-drawer.open {
+        .drawer.open {
             opacity: 1;
             pointer-events: auto;
-            transform: translate(-50%, -50%) scale(1);
         }
 
         .drawer-header {
@@ -300,193 +258,262 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .drawer-header h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #fff, #aaa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
         }
 
         .close-drawer {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.4);
-            transition: all 0.3s;
-            width: 40px;
-            height: 40px;
+            color: rgba(255, 255, 255, 0.3);
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            transition: all 0.2s;
         }
 
         .close-drawer:hover {
             color: #fff;
-            background: rgba(255, 255, 255, 0.15);
-            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ================= Services Specific ================= */
+        #services-drawer {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 90%;
+            max-width: 950px;
+            max-height: 85vh;
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        #services-drawer.open {
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1rem;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-right: 4px;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 14px;
             display: flex;
             gap: 20px;
-            transition: all 0.4s ease;
-            cursor: default;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            align-items: flex-start;
         }
 
         .service-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.06) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-icon {
-            font-size: 2.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            width: 70px;
-            height: 70px;
-            min-width: 70px;
+            font-size: 1.6rem;
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 18px;
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+            margin-top: 4px;
         }
 
-        .service-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
+        .service-info h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
             color: #fff;
         }
 
-        .service-card p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.6;
-            margin: 0;
+        .service-info p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.5;
         }
 
-        /* Mobile Optimization */
+        /* ================= Process Specific ================= */
+        #process-drawer {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 95%;
+            max-width: 1100px;
+            max-height: 90vh;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+        }
+
+        #process-drawer.open {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        .process-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+            border-radius: 16px;
+            transition: background 0.3s;
+        }
+
+        .process-step:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step:hover .step-number {
+            background: #fff;
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .step-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .step-content p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.6;
+        }
+
+        /* ================= Responsive ================= */
         @media (max-width: 768px) {
-            .services-drawer {
+            .hero-title {
+                font-size: 8vw;
+                white-space: nowrap;
+            }
+
+            .drawer {
                 top: auto !important;
-                left: 0 !important;
                 bottom: -100% !important;
+                left: 0 !important;
                 transform: none !important;
                 width: 100% !important;
-                height: 80vh !important;
-                border-radius: 32px 32px 0 0 !important;
-                padding: 2rem 1.5rem !important;
+                height: 85vh !important;
+                border-radius: 24px 24px 0 0 !important;
+                padding: 1.5rem !important;
                 opacity: 1 !important;
-                pointer-events: auto !important;
             }
 
-            .services-drawer.open {
+            .drawer.open {
                 bottom: 0 !important;
-            }
-
-            .services-drawer::before {
-                content: '';
-                position: absolute;
-                top: 12px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 50px;
-                height: 4px;
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 10px;
-            }
-
-            .drawer-header {
-                margin-top: 10px;
-                margin-bottom: 1.5rem;
-            }
-
-            .drawer-header h2 {
-                font-size: 1.6rem;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 1.2rem;
             }
 
-            .service-card {
-                padding: 1.2rem;
-                gap: 15px;
-                display: flex !important;
-                /* Force flex for row layout */
-                align-items: flex-start;
+            .process-timeline {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .process-step {
+                flex-direction: row;
                 text-align: right;
+                gap: 20px;
+                padding: 0.5rem;
             }
 
-            .service-icon {
-                width: 55px;
-                height: 55px;
-                min-width: 55px;
-                font-size: 1.8rem;
-                border-radius: 14px;
+            .step-number {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                font-size: 1.3rem;
+                margin-bottom: 0;
             }
 
-            .service-info {
-                flex: 1;
-                /* Let content take remaining space */
-            }
-
-            .service-card h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.4rem;
-            }
-
-            .service-card p {
-                font-size: 0.9rem;
-                line-height: 1.5;
+            .step-content {
+                text-align: right;
             }
         }
     </style>
-
-    <!-- Structured Data - Organization -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "رائد الحلول الرقمية",
-      "url": "https://www.raed-it.com",
-      "description": "شركة متخصصة في تطوير الأنظمة البرمجية وتصميم واجهات المستخدم وتطبيقات الجوال وأتمتة المهام",
-      "areaServed": "المملكة العربية السعودية",
-      "serviceType": ["تطوير برمجيات", "تصميم واجهات", "تطبيقات جوال", "أتمتة"]
-    }
-    </script>
 </head>
 
 <body>
 
-    <nav class="top-nav" aria-label="القائمة الرئيسية">
+    <nav class="top-nav">
         <a href="#home">الرئيسية</a>
         <a href="#about">عن الشركة</a>
         <a href="#contact">اتصل بنا</a>
@@ -503,23 +530,29 @@
         <div class="tagline-container">
             <p class="tagline">نبتكر حلولاً رقمية ذكية تناسب تطلعاتكم</p>
             <p class="sub-tagline">نحول الأفكار إلى واقع ملموس بأحدث التقنيات وأفضل الممارسات</p>
-            <button type="button" class="cta-button" onclick="toggleDrawer()" aria-expanded="false" aria-controls="services-drawer">اكتشف المزيد</button>
+            <button type="button" class="cta-button" onclick="toggleDrawer('services-drawer')">اكتشف المزيد</button>
         </div>
     </main>
 
     <footer class="bottom-nav">
-        <a href="#services">خدماتنا</a>
+        <a href="#" onclick="event.preventDefault(); toggleDrawer('services-drawer')">خدماتنا</a>
+        <span>•</span>
+        <a href="#" onclick="event.preventDefault(); toggleDrawer('process-drawer')">رحلة الشراكة</a>
         <span>•</span>
         <a href="#portfolio">أعمالنا</a>
         <span>•</span>
         <a href="#about">من نحن</a>
     </footer>
 
+    <div class="footer-cr">
+        مؤسسة رائد الحلول الرقمية سجل تجاري 7052657371
+    </div>
+
     <!-- Services Drawer -->
-    <div id="services-drawer" class="services-drawer">
+    <div id="services-drawer" class="drawer">
         <div class="drawer-header">
             <h2>خدماتنا المميزة</h2>
-            <span class="close-drawer" onclick="toggleDrawer()">✕</span>
+            <span class="close-drawer" onclick="toggleDrawer('services-drawer')">✕</span>
         </div>
         <div class="services-grid">
             <div class="service-card">
@@ -533,14 +566,14 @@
                 <div class="service-icon">🎨</div>
                 <div class="service-info">
                     <h3>تطوير واجهات</h3>
-                    <p>نصمم واجهات مستخدم مذهلة وسهلة الاستخدام تضمن تجربة فريدة لعملائك على جميع الأجهزة.</p>
+                    <p>نصمم واجهات مستخدم مذهلة وسهلة الاستخدام تضمن تجربة فريدة لعملائك.</p>
                 </div>
             </div>
             <div class="service-card">
                 <div class="service-icon">📱</div>
                 <div class="service-info">
                     <h3>تطبيقات الجوال</h3>
-                    <p>نحول فكرتك إلى تطبيق احترافي يعمل بسلاسة على أنظمة iOS و Android بأحدث التقنيات.</p>
+                    <p>نحول فكرتك إلى تطبيق احترافي يعمل بسلاسة على أنظمة iOS و Android.</p>
                 </div>
             </div>
             <div class="service-card">
@@ -553,128 +586,141 @@
         </div>
     </div>
 
+    <!-- Process Drawer -->
+    <div id="process-drawer" class="drawer">
+        <div class="drawer-header">
+            <h2>رحلة الشراكة والنجاح</h2>
+            <span class="close-drawer" onclick="toggleDrawer('process-drawer')">✕</span>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">💡</div>
+                <div class="step-content">
+                    <h3>الاكتشاف والتحليل</h3>
+                    <p>نبدأ بفهم عميق لفكرتك وتطلعاتك، وتحويلها إلى متطلبات تقنية دقيقة تضمن انطلاقة صحيحة.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">📋</div>
+                <div class="step-content">
+                    <h3>التصميم والهيكلة</h3>
+                    <p>نرسم خارطة الطريق ونبني الهيكل الهندسي وتصميم واجهات المستخدم (UI/UX) المثالية.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">⚒️</div>
+                <div class="step-content">
+                    <h3>التطوير والإنتاج</h3>
+                    <p>نحول المخططات إلى كود برمجي متين باستخدام أحدث التقنيات لضمان أداء عالٍ.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">🚀</div>
+                <div class="step-content">
+                    <h3>الإطلاق والنمو</h3>
+                    <p>نطلق مشروعك للعالم ونستمر في دعمه وتطويره لضمان نجاحه المستدام في السوق.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function toggleDrawer() {
-            const drawer = document.getElementById('services-drawer');
-            drawer.classList.toggle('open');
+        function toggleDrawer(id) {
+            const drawer = document.getElementById(id);
+            if (drawer) drawer.classList.toggle('open');
         }
 
-        // إغلاق الدرج عند الضغط خارجه (اختياري)
+        // Close on outside click
         window.onclick = function (event) {
-            const drawer = document.getElementById('services-drawer');
-            const btn = document.querySelector('.cta-button');
-            if (event.target !== drawer && !drawer.contains(event.target) && event.target !== btn) {
-                drawer.classList.remove('open');
-            }
+            const drawers = document.querySelectorAll('.drawer');
+            drawers.forEach(drawer => {
+                if (drawer.classList.contains('open')) {
+                    const isClickInside = drawer.contains(event.target);
+                    const isClickOnToggle = event.target.closest('.cta-button') || event.target.closest('.bottom-nav a');
+                    if (!isClickInside && !isClickOnToggle) {
+                        drawer.classList.remove('open');
+                    }
+                }
+            });
         }
 
+        // Particles Background
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         const glow = document.getElementById('mouse-glow');
         const mainTitle = document.getElementById('mainTitle');
 
         let particlesArray = [];
-        const numberOfParticles = 90; // تقليل العدد قليلاً لزيادة الوضوح والهدوء
+        const numberOfParticles = 90;
 
         function setCanvasSize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-
         window.addEventListener('resize', setCanvasSize);
         setCanvasSize();
 
-        let mouse = {
-            x: null,
-            y: null,
-            radius: 150
-        }
+        let mouse = { x: null, y: null };
 
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.x;
             mouse.y = e.y;
             glow.style.left = `${e.clientX}px`;
             glow.style.top = `${e.clientY}px`;
+
+            // Interactive dynamic glow for items
+            const interactives = document.querySelectorAll('.service-card, .process-step');
+            interactives.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                el.style.setProperty('--mouse-x', `${x}%`);
+                el.style.setProperty('--mouse-y', `${y}%`);
+            });
         });
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height; // Initialize randomly on screen
+                this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 1.2 + 0.3;
                 this.speedY = Math.random() * 0.6 + 0.3;
                 this.opacity = Math.random() * 0.3 + 0.1;
                 this.fadeSpeed = 0.0005 + Math.random() * 0.0015;
             }
-
             reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = canvas.height + Math.random() * 100;
-                this.size = Math.random() * 1.2 + 0.3;
-                this.speedY = Math.random() * 0.6 + 0.3;
                 this.opacity = Math.random() * 0.3 + 0.1;
-                this.fadeSpeed = 0.0005 + Math.random() * 0.0015;
             }
-
             update() {
                 this.y -= this.speedY;
-
-                if (this.y < canvas.height * 0.2) {
-                    this.opacity -= this.fadeSpeed;
-                }
-
-                if (this.y < -20 || this.opacity <= 0) {
-                    this.reset();
-                }
+                if (this.y < canvas.height * 0.2) this.opacity -= this.fadeSpeed;
+                if (this.y < -20 || this.opacity <= 0) this.reset();
             }
-
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.shadowBlur = 4;
-                ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
                 ctx.fill();
             }
         }
 
         function initParticles() {
-            particlesArray = [];
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
+            for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
         }
 
         function connect() {
-            let opacityValue = 1;
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
-                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-
-                    if (distance < (canvas.width / 7) * (canvas.height / 7) && distance < 20000) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.1})`;
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
+                    if (distance < 15000) {
+                        let opacity = 1 - (distance / 15000);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.1})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                         ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                        ctx.stroke();
-                    }
-                }
-
-                // Connect to mouse
-                if (mouse.x != null) {
-                    let dx = particlesArray[a].x - mouse.x;
-                    let dy = particlesArray[a].y - mouse.y;
-                    let distance = dx * dx + dy * dy;
-                    if (distance < 25000) {
-                        opacityValue = 1 - (distance / 25000);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacityValue * 0.2})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                        ctx.lineTo(mouse.x, mouse.y);
                         ctx.stroke();
                     }
                 }
@@ -683,30 +729,17 @@
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-            }
+            particlesArray.forEach(p => { p.update(); p.draw(); });
             connect();
             requestAnimationFrame(animate);
         }
 
-        window.addEventListener('mousemove', (e) => {
-            glow.style.left = `${e.clientX}px`;
-            glow.style.top = `${e.clientY}px`;
-        });
-
         mainTitle.addEventListener('mousedown', () => {
             mainTitle.classList.add('clicked');
-            setTimeout(() => {
-                mainTitle.classList.remove('clicked');
-            }, 400);
+            setTimeout(() => mainTitle.classList.remove('clicked'), 400);
         });
 
-        window.onload = () => {
-            initParticles();
-            animate();
-        };
+        window.onload = () => { initParticles(); animate(); };
     </script>
 </body>
 

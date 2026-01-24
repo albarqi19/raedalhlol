@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd external favicon for Google search results\n\n- Create favicon.svg file for better SEO\n- Update HTML to reference external favicon\n- Add support for multiple favicon sizes \\(PNG\\)\n- Add Apple touch icon support\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)"
+    ]
+  }
+}
