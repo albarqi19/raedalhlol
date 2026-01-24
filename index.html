@@ -5,6 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رائد الحلول الرقمية - نصنع حلولاً</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="رائد الحلول الرقمية - شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام. نحول أفكاركم إلى حلول رقمية متكاملة.">
+    <meta name="keywords" content="حلول رقمية، تطوير برمجيات، تصميم مواقع، تطبيقات جوال، أتمتة">
+    <meta name="author" content="رائد الحلول الرقمية">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.raed-it.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.raed-it.com/">
+    <meta property="og:title" content="رائد الحلول الرقمية - نصنع حلولاً رقمية ذكية">
+    <meta property="og:description" content="شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام.">
+    <meta property="og:image" content="https://www.raed-it.com/og-image.jpg">
+    <meta property="og:locale" content="ar_SA">
+    <meta property="og:site_name" content="رائد الحلول الرقمية">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="رائد الحلول الرقمية - نصنع حلولاً رقمية ذكية">
+    <meta name="twitter:description" content="شركة متخصصة في تطوير الأنظمة البرمجية، تصميم واجهات المستخدم، تطبيقات الجوال، وأتمتة المهام.">
+    <meta name="twitter:image" content="https://www.raed-it.com/og-image.jpg">
+
     <!-- استيراد خط IBM Plex Sans Arabic -->
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap"
         rel="stylesheet">
@@ -65,12 +88,14 @@
             letter-spacing: 1px;
         }
 
-        .top-nav span {
+        .top-nav a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
             cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .top-nav span:hover {
+        .top-nav a:hover {
             color: #ffffff;
         }
 
@@ -172,8 +197,19 @@
             color: rgba(255, 255, 255, 0.3);
         }
 
-        .bottom-nav span {
+        .bottom-nav a {
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-nav a:hover {
+            color: #ffffff;
+        }
+
+        .bottom-nav span {
+            cursor: default;
         }
 
         @keyframes fadeInUp {
@@ -430,14 +466,27 @@
             }
         }
     </style>
+
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "رائد الحلول الرقمية",
+      "url": "https://www.raed-it.com",
+      "description": "شركة متخصصة في تطوير الأنظمة البرمجية وتصميم واجهات المستخدم وتطبيقات الجوال وأتمتة المهام",
+      "areaServed": "المملكة العربية السعودية",
+      "serviceType": ["تطوير برمجيات", "تصميم واجهات", "تطبيقات جوال", "أتمتة"]
+    }
+    </script>
 </head>
 
 <body>
 
-    <nav class="top-nav">
-        <span>الرئيسية</span>
-        <span>عن الشركة</span>
-        <span>اتصل بنا</span>
+    <nav class="top-nav" aria-label="القائمة الرئيسية">
+        <a href="#home">الرئيسية</a>
+        <a href="#about">عن الشركة</a>
+        <a href="#contact">اتصل بنا</a>
     </nav>
 
     <div id="mouse-glow"></div>
@@ -451,16 +500,16 @@
         <div class="tagline-container">
             <p class="tagline">نبتكر حلولاً رقمية ذكية تناسب تطلعاتكم</p>
             <p class="sub-tagline">نحول الأفكار إلى واقع ملموس بأحدث التقنيات وأفضل الممارسات</p>
-            <a href="javascript:void(0)" class="cta-button" onclick="toggleDrawer()">اكتشف المزيد</a>
+            <button type="button" class="cta-button" onclick="toggleDrawer()" aria-expanded="false" aria-controls="services-drawer">اكتشف المزيد</button>
         </div>
     </main>
 
     <footer class="bottom-nav">
-        <span>خدماتنا</span>
+        <a href="#services">خدماتنا</a>
         <span>•</span>
-        <span>أعمالنا</span>
+        <a href="#portfolio">أعمالنا</a>
         <span>•</span>
-        <span>من نحن</span>
+        <a href="#about">من نحن</a>
     </footer>
 
     <!-- Services Drawer -->
